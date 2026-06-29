@@ -1,0 +1,31 @@
+baseURL = "https://go-ruby-erb.github.io/"
+title = "go-ruby-erb"
+disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
+
+[markup.goldmark.renderer]
+  unsafe = true
+
+[[params.phases]]
+  name = "Tag scanner & literals"
+  status = "ready"
+  blurb = "The MRI tag scanner for `<% code %>`, `<%= expression %>` and `<%# comment %>`, plus the `<%%` / `%%>` literal escapes — split into the exact stags/etags the reference `ERB::Compiler` produces."
+[[params.phases]]
+  name = "Trim modes"
+  status = "ready"
+  blurb = "Every MRI `trim_mode` and its combinations — `-` explicit `-%>` newline strip, `>` end-of-line strip, `<>` start-and-end strip, and `%` percent-line code (`%%` escaping a literal `%`)."
+[[params.phases]]
+  name = "Compiler & text encoding"
+  status = "ready"
+  blurb = "AST → Ruby source via MRI's put/insert/pre/post command wiring, with literal runs emitted through Ruby's `String#dump` on the binary string so quotes, newlines, control bytes and multibyte UTF-8 round-trip byte-for-byte."
+[[params.phases]]
+  name = "Magic comments & ERB::Util"
+  status = "ready"
+  blurb = "Leading `<%# coding: … %>` / `frozen_string_literal: …` detection (incl. the emacs `-*- … -*-` form) reflected in the emitted prefix, plus `ERB::Util`'s `HTMLEscape` / `URLEncode` helpers."
+[[params.phases]]
+  name = "Differential oracle & coverage"
+  status = "ready"
+  blurb = "A wide template corpus compiled both here and by the system `ruby`, comparing emitted source **and** rendered output byte-for-byte against MRI; 100% coverage, gofmt + go vet clean, green across all six 64-bit Go arches."
+[[params.phases]]
+  name = "Ruby surface"
+  status = "planned"
+  blurb = "Downstream, not part of this compiler module: the final `eval(compiled_src, binding)` that renders the string needs a Ruby interpreter and lives in the go-embedded-ruby consumer (rbgo). This library compiles; the host evaluates."

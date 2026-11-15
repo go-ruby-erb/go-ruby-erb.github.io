@@ -41,11 +41,9 @@
   <div class="hero"><div class="wrap">
     <div>
       <h1 class="head">go-ruby-erb</h1>
-      <p class="sub">Ruby's ERB template compiler in pure Go — MRI-compatible byte-for-byte, no cgo.</p>
-      <div class="cta">
-        <a class="btn btn-primary" href="/docs/">{{ partial "icons/book.html" . }}Documentation</a>
-        <a class="btn btn-ghost" href="https://github.com/go-ruby-erb/erb">{{ partial "icons/github.html" . }}GitHub</a>
-      </div>
+      <p class="sub">Ruby's ERB template compiler in {{ if partial "mantra-on.html" . }}Go{{ else }}pure Go{{ end }} — MRI-compatible byte-for-byte, {{ if not (partial "mantra-on.html" $) }}no cgo{{ end }}.</p>
+      {{/* [[params.cta]] in hugo.toml: the kit renders the row */}}
+      {{ partial "cta.html" . }}
       <div class="trust">{{ if not (partial "mantra-on.html" $) }}<span class="pill">pure Go · zero cgo</span>{{ end }}<span class="pill">ERB::Compiler</span><span class="pill">all tag kinds</span><span class="pill">every trim mode</span><span class="pill">&lt;%% %%&gt; literals</span><span class="pill">magic comments</span><span class="pill">String#dump encoding</span><span class="pill">ERB::Util · h / u</span><span class="pill">MRI byte-exact</span><span class="pill">100% coverage</span><span class="pill">6 arches</span></div>
       <div class="legacy"><div class="badges">
       <a href="/docs/"><img alt="Documentation (MkDocs Material + mike)" src="https://img.shields.io/badge/docs-mkdocs--material-9B1C2E"></a>
